@@ -1,15 +1,36 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Navigation */
 nav ul {
     list-style-type: none;
     padding: 0;
     display: flex;
     justify-content: space-around;
+    margin: 0;
+    background-color: #f8f8f8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 nav a {
     text-decoration: none;
     color: #333;
+    padding: 12px 20px;
+    display: block;
 }
 
+nav a:hover {
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+/* Dark Mode Styles */
 body.dark-mode nav {
     background-color: #222;
 }
@@ -18,6 +39,12 @@ body.dark-mode nav a {
     color: #fff;
 }
 
+body.dark-mode {
+    background-color: #121212;
+    color: #fff;
+}
+
+/* Form Popup */
 .form-popup {
     display: none;
     position: fixed;
@@ -32,11 +59,19 @@ body.dark-mode nav a {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
     border-radius: 10px;
     box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.form-popup.show {
+    display: block;
+    opacity: 1;
 }
 
 .form-container h2 {
     margin-bottom: 20px;
     color: #333;
+    font-size: 24px;
 }
 
 .form-group {
@@ -50,53 +85,53 @@ body.dark-mode nav a {
     line-height: 1.5;
     box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
     width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #007bff;
 }
 
 .forgot {
     text-align: right;
     margin-left: 50px;
-    font-size: 10px;
-    margin-top: -40px;
-
+    font-size: 12px;
+    margin-top: -10px;
+    color: #007bff;
+    cursor: pointer;
 }
 
+/* Button Styles */
 .btn {
     margin-top: 10px;
+    padding: 12px;
     border-radius: 5px;
-}
-
-.eye-icon {
-    position: absolute;
-    right: 15px;
-    top: 38px;
+    font-size: 16px;
     cursor: pointer;
-    color: #007bff;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.close-icon {
-    font-size: 24px;
-    cursor: pointer;
-    float: right;
-}
-
-.position-relative {
-    position: relative;
-}
-
-/* Login button jumping issue fix */
 .btn-primary {
-    transition: all 0.3s ease;
-    /* Smooth transition */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
 }
 
 .btn-primary:hover {
     background-color: #0056b3;
+    transform: translateY(-2px); /* Add hover effect */
 }
 
 .google-btn {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #db4437;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .google-logo {
@@ -105,21 +140,85 @@ body.dark-mode nav a {
     margin-right: 10px;
 }
 
-.btn-primary:hover {
-    background-color: #0056b3;
+.google-btn:hover {
+    background-color: #c1351d;
+    transform: translateY(-2px); /* Add hover effect */
 }
 
+/* Eye Icon */
+.eye-icon {
+    position: absolute;
+    right: 15px;
+    top: 38px;
+    cursor: pointer;
+    color: #007bff;
+}
+
+/* Close Icon */
+.close-icon {
+    font-size: 24px;
+    cursor: pointer;
+    float: right;
+    color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-popup {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .form-container h2 {
+        font-size: 20px;
+    }
+
+    .forgot {
+        font-size: 10px;
+        margin-left: 0;
+    }
+
+    .google-btn {
+        width: 100%;
+    }
+}
+
+/* Animation for Form Popup */
+@keyframes slideIn {
+    from {
+        transform: translate(-50%, -60%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+/* Open Button (if used) */
 .open {
-    background: #0f1522f0;
+    background: rgba(15, 21, 34, 0.9);
     position: absolute;
     left: 42%;
     display: flex !important;
-    align-items: start;
-    top: 0%;
+    align-items: flex-start;
+    top: 0;
     height: 100vh;
     border-radius: 15px;
     padding: 30px;
-    padding-top: 30px;
-    padding-top: 75px;
     z-index: 9;
+    animation: slideIn 0.5s ease-out;
 }
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+
+
